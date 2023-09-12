@@ -8,6 +8,7 @@ import org.dom4j.io.SAXReader;
 import org.dom4j.io.XMLWriter;
 import org.junit.Test;
 
+import java.awt.print.Book;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.List;
@@ -158,12 +159,20 @@ public class Dome4j_ {
         SAXReader saxReader = new SAXReader();
         Document read = saxReader.read("src/main/java/org/example/books.xml");
         List<Element> books = read.getRootElement().elements("book");
-        for (Element book:books){
+        for (Element book : books) {
+            Element bookElement = (Element) book.element("name");
+            Element bookElement2 = (Element) book.element("price");
+            Element bookElement3 = (Element) book.element("author");
 
         }
+
     }
 
 }
+
+
+
+
 
 
 
