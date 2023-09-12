@@ -8,7 +8,6 @@ import org.dom4j.io.SAXReader;
 import org.dom4j.io.XMLWriter;
 import org.junit.Test;
 
-import java.awt.print.Book;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.List;
@@ -24,9 +23,8 @@ import java.util.List;
 public class Dome4j_ {
 
 
-    /*
+    /**
      * 演示如何加载xml文件
-
      */
     @Test
     public void loadXml() throws DocumentException {
@@ -38,7 +36,7 @@ public class Dome4j_ {
 
     }
 
-    /*
+    /**
      * 遍历所有student信息
      */
     @Test
@@ -63,7 +61,7 @@ public class Dome4j_ {
         }
     }
 
-    /*
+    /**
      * 指定读取第一个学生的信息 就是 dom4j+xpath
      */
     @Test
@@ -71,7 +69,7 @@ public class Dome4j_ {
 //        解析xml文件
         SAXReader saxReader = new SAXReader();
         Document document = saxReader.read(new File("src/main/java/org/example/students.xml"));
-//        得到rootelement
+//        得到root element
         Element rootElement = document.getRootElement();
 //        System.out.println(rootElement.elements().get(1).getClass().getSimpleName());
         Element stduent = (Element) rootElement.elements().get(0);
@@ -85,13 +83,11 @@ public class Dome4j_ {
 
     /**
      * 下面的了解一下就行
-     */
-
-    /*
      * //删除元素(要求：删除第一个学生) 使用少，了解
      *
      * @throws Exception
      */
+
     @Test
     public void del() throws Exception {
         //1.得到解析器
@@ -117,7 +113,7 @@ public class Dome4j_ {
     }
 
 
-    /*
+    /**
      * //更新元素(要求把所有学生的年龄+3) 使用少，了解
      *
      * @throws Exception
@@ -160,10 +156,17 @@ public class Dome4j_ {
         Document read = saxReader.read("src/main/java/org/example/books.xml");
         List<Element> books = read.getRootElement().elements("book");
         for (Element book : books) {
+//            name元素的信息
             Element bookElement = (Element) book.element("name");
             Element bookElement2 = (Element) book.element("price");
             Element bookElement3 = (Element) book.element("author");
-
+            String id = book.attributeValue("id");
+            Book book1 = new Book();
+            book1.setId(Integer.parseInt(id));
+            book1.setAuthor(bookElement3.getText());
+            book1.setName(bookElement.getText());
+            book1.setPrice(Double.parseDouble(bookElement2.getText()));
+            System.out.println(book1);
         }
 
     }
