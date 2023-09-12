@@ -149,10 +149,19 @@ public class Dome4j_ {
         writer.close();
         System.out.println("更新成功~");
     }
+
     /*
-
+创建对应book对象
      */
+    @Test
+    public void findBook() throws DocumentException {
+        SAXReader saxReader = new SAXReader();
+        Document read = saxReader.read("src/main/java/org/example/books.xml");
+        List<Element> books = read.getRootElement().elements("book");
+        for (Element book:books){
 
+        }
+    }
 
 }
 
